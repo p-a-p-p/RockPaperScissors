@@ -14,9 +14,6 @@ function getHumanChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
-  let humanScore = 0;
-  let computerScore = 0;
-
   // Rock Wins Scissor
   // Rock Loses to Paper
   // Paper Loses to Scissors
@@ -88,10 +85,12 @@ function playRound(humanChoice, computerChoice) {
     );
   } // END OF SCISSOR
 
-  return computerScore, humanScore;
+  return { computerScore, humanScore };
 }
-
+let humanScore = 0;
+let computerScore = 0;
 function playGame() {
+  let round = 0;
   let humanScore = 0;
   let computerScore = 0;
 
@@ -99,14 +98,19 @@ function playGame() {
 
   for (i = 0; i < 5; i++) {
     //choice will repeat each cycle
-    humanScore;
-    computerScore;
+
+    // Each Repeat Records Winner Score
     let humanChoice = getHumanChoice();
     let computerChoice = getComputerChoice();
-    playRound(humanChoice, computerChoice);
+    const scores = playRound(humanChoice, computerChoice);
+    round++;
+
+    if (round === 5 && scores.computerScore > scores.humanScore) {
+      console.log("COMPUTER is the winner!!!");
+    } else if (round === 5 && scores.humanScore > scores.computerScore) {
+      console.log("YOU are the winner!!!!");
+    }
   }
-  // Each Repeat Records Winner Score
-  // After 5 rounds, declare winner depending on score
 }
 
 playGame();
