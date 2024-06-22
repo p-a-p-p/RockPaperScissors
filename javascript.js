@@ -6,18 +6,10 @@ function getComputerChoice() {
   return choices[choice];
 }
 
-function getHumanChoice() {
-  choice = prompt("ROCK, PAPER, SCISSOR");
-  choice = choice.toUpperCase();
-
+function getHumanChoice(choice) {
   return choice;
 }
-
 function playRound(humanChoice, computerChoice) {
-  // Rock Wins Scissor
-  // Rock Loses to Paper
-  // Paper Loses to Scissors
-  // Scissors loses to Rock
   console.log("human choice is: " + humanChoice);
   console.log("Computer choice is: " + computerChoice);
 
@@ -87,15 +79,16 @@ function playRound(humanChoice, computerChoice) {
 
   return { computerScore, humanScore };
 }
+
 let humanScore = 0;
 let computerScore = 0;
+
 function playGame() {
   let round = 0;
-  let humanScore = 0;
-  let computerScore = 0;
+  //   let humanScore = 0;
+  //   let computerScore = 0;
 
   // repeat PLAYROUND 5 times
-
   for (i = 0; i < 5; i++) {
     //choice will repeat each cycle
 
@@ -113,4 +106,58 @@ function playGame() {
   }
 }
 
-playGame();
+const rockButton = document.querySelector("#rockButton");
+rockButton.addEventListener("click", function () {
+  const div = document.querySelector("div");
+  const score = playRound(getHumanChoice("ROCK"), getComputerChoice());
+
+  div.textContent = `HUMAN SCORE: ${score.humanScore} COMPUTER SCORE: ${score.computerScore}`;
+  document.body.appendChild(div);
+  const result = document.createElement("div");
+
+  if (score.humanScore === 5) {
+    result.textContent = "HUMAN WINS!!";
+    document.body.appendChild(result);
+  } else if (score.computerScore === 5) {
+    result.textContent = "COMPUTER WINS!!!";
+    document.body.appendChild(result);
+  }
+});
+
+const paperButton = document.querySelector("#paperButton");
+
+paperButton.addEventListener("click", function () {
+  const div = document.querySelector("div");
+  const score = playRound(getHumanChoice("PAPER"), getComputerChoice());
+
+  div.textContent = `HUMAN SCORE: ${score.humanScore} COMPUTER SCORE: ${score.computerScore}`;
+  document.body.appendChild(div);
+  const result = document.createElement("div");
+
+  if (score.humanScore === 5) {
+    result.textContent = "HUMAN WINS!!";
+    document.body.appendChild(result);
+  } else if (score.computerScore === 5) {
+    result.textContent = "COMPUTER WINS!!!";
+    document.body.appendChild(result);
+  }
+});
+
+const scissorButton = document.querySelector("#scissorButton");
+
+scissorButton.addEventListener("click", function () {
+  const div = document.querySelector("div");
+  const score = playRound(getHumanChoice("SCISSOR"), getComputerChoice());
+
+  div.textContent = `HUMAN SCORE: ${score.humanScore} COMPUTER SCORE: ${score.computerScore}`;
+  document.body.appendChild(div);
+  const result = document.createElement("div");
+
+  if (score.humanScore === 5) {
+    result.textContent = "HUMAN WINS!!";
+    document.body.appendChild(result);
+  } else if (score.computerScore === 5) {
+    result.textContent = "COMPUTER WINS!!!";
+    document.body.appendChild(result);
+  }
+});
